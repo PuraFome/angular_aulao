@@ -1,0 +1,22 @@
+<p>pessoa works!</p>
+
+
+<form [formGroup]="form">
+    <!-- <h1 *ngIf="form.get('id')?.errors">teste</h1> -->
+    <label>
+      ID
+      <input type="text" formControlName="id" >
+    </label>
+    <label>
+      Nome
+      <input type="text" formControlName="nome">
+    </label>
+
+    <button>Enviar</button>
+</form>
+
+<pre>{{form.valueChanges | async | json }}</pre>
+
+<pre>{{form.get('id')?.errors | json}}</pre>
+
+<pre>{{form.data | json}}</pre>
