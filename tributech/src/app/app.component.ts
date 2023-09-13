@@ -50,15 +50,15 @@ obs$.next({ id: 3});
 export class AppComponent {
   title = 'tributech';
 
-  buttonColor = 'red';
-  colors: string[] = ['red','pink', 'purple', 'blue']
+  buttonColor = 'purple';
+  colors: string[] = ['purple','pink', 'purple', 'blue']
 
   colorChange(){
-    if (this.buttonColor == 'red'){
+    if (this.buttonColor == 'purple'){
       this.buttonColor = 'blue'
       console.log(this.buttonColor)
     }else{
-      this.buttonColor = 'red'
+      this.buttonColor = 'purple'
     }
   }
 
@@ -75,4 +75,40 @@ export class AppComponent {
     //   },4000)
     // )
   }
+
+  mouseEvent<T>(event: T){
+    console.log('app component event')
+    console.log(event)
+  }
 }
+
+
+interface Todo {
+  title: string;
+  description: string;
+}
+
+type Title = Pick<Todo, 'title'>
+type Description = Omit<Todo, 'title'>
+type _Title = Omit<Todo, 'title'>
+
+const desc: _Title ={
+  description: ''
+}
+
+const desc2: Title= {
+  title: ''
+}
+
+function updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>) {
+  return { ...todo, ...fieldsToUpdate };
+}
+
+const todo1: Todo = {
+  title: "organizar mesa",
+  description: "limpar a bagunça",
+};
+
+const todo2 = updateTodo(todo1, {
+  description: "tirar o lixo",
+});

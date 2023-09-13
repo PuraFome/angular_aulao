@@ -1,14 +1,10 @@
 import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, ContentChild, ContentChildren, ElementRef, Input, OnChanges, OnInit, QueryList, SimpleChanges, ViewChild } from '@angular/core';
 import { IconComponent } from '../icon/icon.component';
 
-class Observer {
-
-}
-
-
 
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[app-button]',
   template: `
     <ng-content select="app-icon"></ng-content>
@@ -20,6 +16,11 @@ class Observer {
     <h2 #headingRef>heading</h2>
   `,
   styles: [
+    `
+      .ico{
+        color: red;
+      }
+    `
   ]
 })
 export class ButtonComponent
@@ -77,3 +78,19 @@ export class ButtonComponent
   }
 
 }
+
+
+class MeuWebComponent extends HTMLElement{
+
+  connectedCallBack(){
+    console.log("MEU WEB COMPONENT")
+
+    this.attachShadow({mode: 'open'})
+
+    this.shadowRoot!.innerHTML = `
+      <slot></slot>
+      <h1>Meu Web Component</h1>
+    `
+  }
+}
+customElements.define('meu-web-component', MeuWebComponent)
